@@ -19,7 +19,7 @@ variable "subnetinstance_count" {
   default = 1
 }
 
-variable "tag" {
+variable "env" {
   type    = "string"
   default = "local"
 }
