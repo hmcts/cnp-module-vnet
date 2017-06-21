@@ -10,6 +10,6 @@ control 'azure-resource-groups' do
   title ' Check that the resource group exist'
 
   describe azure_resource_group(name: 'test-probate') do
-    its('location') { should eq 'westeurope' }
+    its('location') { should eq 'uksouth' }
   end
 end

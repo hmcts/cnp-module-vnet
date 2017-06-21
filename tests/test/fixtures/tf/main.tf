@@ -2,5 +2,5 @@ provider "azurerm" {}
 
 resource "azurerm_resource_group" "management" {
   name     = "test-probate"
-  location = "westeurope"
+  location = "UK South"
 }
