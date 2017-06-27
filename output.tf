@@ -41,3 +41,7 @@ output "subnet_backend_name" {
 output "subnet_data_name" {
   value = "${azurerm_subnet.sb.3.name}"
 }
+
+output "location" {
+  value = "${azurerm_resource_group.rg.location}"
+}
