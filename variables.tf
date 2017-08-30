@@ -15,10 +15,6 @@ variable "address_prefixes" {
   default = ["10.0.0.0/24"]
 }
 
-variable "subnetinstance_count" {
-  default = 1
-}
-
 variable "env" {
   type    = "string"
   default = "local"
