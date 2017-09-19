@@ -26,7 +26,7 @@ output "resourcegroup_name" {
   value = "${azurerm_resource_group.rg.name}"
 }
 
-output "subnet_gateway_name" {
+/*output "subnet_gateway_name" {
   value = "${azurerm_subnet.sb.0.name}"
 }
 
@@ -44,4 +44,5 @@ output "subnet_data_name" {
 
 output "location" {
   value = "${azurerm_resource_group.rg.location}"
-}
+}*/
+
