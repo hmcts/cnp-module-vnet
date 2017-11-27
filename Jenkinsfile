@@ -1,5 +1,5 @@
 #!groovy
-@Library('Infrastructure@private-ase') _
+@Library('Infrastructure') _
 import uk.gov.hmcts.contino.Testing
 import uk.gov.hmcts.contino.Tagging
 
