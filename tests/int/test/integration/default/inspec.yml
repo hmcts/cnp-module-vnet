@@ -1,7 +1,7 @@
 ---
 name: default
 title: HMCTS Compliance Profile
-maintainer: Gianluca Ciocci
+maintainer: HMCTS
 copyright: HMCTS.net
 copyright_email: copyright@hmcts.net
 license: All Rights Reserved
@@ -10,12 +10,5 @@ version: 0.1.0
 supports:
   - platform: azure
 depends:
-  - name: azure
-    git: https://github.com/gianlucaciocci/inspec-azure
-    branch: azure-env-credential-fix
-    #path: ../../../../../inspec-azure
-    #url: https://github.com/chef/inspec-azure/archive/master.tar.gz
-
-    #path: ../../inspec-azure
-    #git: https://github.com/chef/inspec-azure
-    #branch:  master
+  - name: git-profile
+    git: https://23a108ab5ea17c28372a130d72aa60ea0761839b@github.com/contino/moj-azure-inspec
