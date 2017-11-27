@@ -3,6 +3,8 @@
 import uk.gov.hmcts.contino.Testing
 import uk.gov.hmcts.contino.Tagging
 
+GITHUB_REPO = "github.com/contino/moj-module-waf/"
+
 try {
   node {
     platformSetup {
