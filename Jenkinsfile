@@ -3,7 +3,7 @@
 import uk.gov.hmcts.contino.Testing
 import uk.gov.hmcts.contino.Tagging
 
-GITHUB_REPO = "github.com/contino/moj-module-waf/"
+GITHUB_REPO = "github.com/contino/moj-module-vnet.git"
 
 try {
   node {
