@@ -1,0 +1,14 @@
+---
+name: default
+title: HMCTS Compliance Profile
+maintainer: HMCTS
+copyright: HMCTS.net
+copyright_email: copyright@hmcts.net
+license: All Rights Reserved
+summary: An Hello World InSpec Compliance Profile
+version: 0.1.0
+supports:
+  - platform: azure
+depends:
+  - name: git-profile
+    git: https://23a108ab5ea17c28372a130d72aa60ea0761839b@github.com/contino/moj-azure-inspec
