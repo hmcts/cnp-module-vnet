@@ -23,3 +23,7 @@ variable "env" {
 variable "lb_private_ip_address" {
   description = "Private IP address of the of the DNS consul cluster loadbalancer"
 }
+
+variable "microsoft_external_dns" {
+  default = "168.63.129.16"
+}
