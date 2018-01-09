@@ -20,11 +20,7 @@ variable "env" {
   default = "local"
 }
 
-variable "lb_private_ip_address" {
-  description = "Private IP address of the of the DNS consul cluster loadbalancer"
-}
-
 variable "microsoft_external_dns" {
-  default     = ["168.63.129.16", "172.16.0.10"]
-  description = "List of external DNS servers, default currently including tactical dns."
+  default     = ["127.0.0.1", "168.63.129.16"]
+  description = "List of external DNS servers, default currently includes localhost (for hosts that have their own forwarder) and Azure's recursive resolvers virtual ip."
 }
