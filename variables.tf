@@ -28,3 +28,5 @@ variable "microsoft_external_dns" {
   default     = ["168.63.129.16"]
   description = "List of external DNS servers"
 }
+
+variable "ephemeral" {}
