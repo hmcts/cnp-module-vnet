@@ -18,12 +18,3 @@ resource "azurerm_subnet" "sb" {
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "${cidrsubnet("${var.source_range}", 7, count.index)}"
 }
-
-
-resource "azurerm_management_lock" "vnet-lock" {
-  count      = "${var.ephemeral}"
-  name       = "resource-group-level"
-  scope      = "${azurerm_virtual_network.vnet.id}"
-  lock_level = "CanNotDelete"
-  notes      = "Delete prevented for persistant peering"
-}
