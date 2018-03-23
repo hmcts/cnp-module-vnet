@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"zoneName": {
+			"type": "string",
+			"defaultValue": "private.local",
+			"metadata": {
+				"description": "The name of the DNS zone to be created.  Must have at least 2 segements, e.g. hostname.org"
+			}
+		},
+		"vnetName": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"virtualNetworkName": "[parameters('vnetName')]",
+		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]"
+	},
+	"resources": [
+	{
+		"type": "Microsoft.Network/dnszones",
+		"name": "[parameters('zoneName')]",
+		"apiVersion": "2017-09-15-preview",
+		"location": "global",
+		"dependsOn": ["[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"],
+		"properties": {
+			"zoneType": "Private",
+			"registrationVirtualNetworks": [
+				{"id": "[variables('vnetID')]"}
+			]
+		}
+	}
+	]
+}

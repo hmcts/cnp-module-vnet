@@ -18,3 +18,19 @@ resource "azurerm_subnet" "sb" {
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
 }
+
+data "template_file" "privatedns" {
+  template = "${file("${path.module}/template/azuredns.json")}"
+}
+
+resource "azurerm_template_deployment" "azuredns" {
+  template_body       = "${data.template_file.privatedns.rendered}"
+  name                = "azure-dns-${var.env}"
+  deployment_mode     = "Incremental"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+
+  parameters = {
+    zoneName           = "core-compute-${var.env}.internal"
+    virtualNetworkName = "${azurerm_virtual_network.vnet.name}"
+  }
+}
