@@ -8,13 +8,14 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
   address_space       = ["${var.address_space}"]
   location            = "${azurerm_resource_group.rg.location}"
-  dns_servers         = ["${var.lb_private_ip_address}", "${var.microsoft_external_dns}"]
+
+  // dns_servers         = ["${var.lb_private_ip_address}", "${var.microsoft_external_dns}"]
 }
 
 resource "azurerm_subnet" "sb" {
-  count                = "4"
+  count                = "2"
   name                 = "${var.name}-subnet-${count.index}-${var.env}"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
-  address_prefix       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
+  address_prefix       = "${cidrsubnet("${var.source_range}", 2, count.index)}"
 }
