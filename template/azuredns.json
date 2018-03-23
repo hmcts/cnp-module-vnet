@@ -23,7 +23,6 @@
 		"name": "[parameters('zoneName')]",
 		"apiVersion": "2017-09-15-preview",
 		"location": "global",
-		"dependsOn": ["[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"],
 		"properties": {
 			"zoneType": "Private",
 			"registrationVirtualNetworks": [
