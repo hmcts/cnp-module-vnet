@@ -25,3 +25,4 @@ variable "microsoft_external_dns" {
   description = "List of external DNS servers, default currently including tactical dns."
 }
 
+variable "subscription" {}

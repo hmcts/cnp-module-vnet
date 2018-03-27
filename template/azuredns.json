@@ -11,11 +11,15 @@
 		},
 		"vnetName": {
 			"type": "string"
+		},
+		"subscription":{
+			"type": "string"
 		}
 	},
 	"variables": {
 		"virtualNetworkName": "[parameters('vnetName')]",
-		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]"
+		"vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
+		"mgmtVnet": "[resourceId(concat('mgmt-infra-', parameters('subscription')), 'Microsoft.Network/virtualNetworks', concat('mgmt-infra-', parameters('subscription')))]"
 	},
 	"resources": [
 	{
@@ -26,8 +30,15 @@
 		"properties": {
 			"zoneType": "Private",
 			"registrationVirtualNetworks": [
-				{"id": "[variables('vnetID')]"}
-			]
+				{
+					"id": "[variables('vnetID')]"
+				}
+			],
+			"resolutionVirtualNetworks": [
+				{
+					"id":"[variables('mgmtVnet']"
+				}
+			]	
 		}
 	}
 	]
