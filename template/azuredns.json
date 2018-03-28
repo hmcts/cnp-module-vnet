@@ -36,7 +36,7 @@
 			],
 			"resolutionVirtualNetworks": [
 				{
-					"id":"[variables('mgmtVnet']"
+					"id":"[variables('mgmtVnet')]"
 				}
 			]	
 		}
