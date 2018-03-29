@@ -33,11 +33,6 @@
 				{
 					"id": "[variables('vnetID')]"
 				}
-			],
-			"resolutionVirtualNetworks": [
-				{
-					"id":"[variables('mgmtVnet')]"
-				}
 			]	
 		}
 	}
