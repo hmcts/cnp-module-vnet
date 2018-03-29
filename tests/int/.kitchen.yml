@@ -1,7 +1,7 @@
 ---
 driver:
   name: terraform
-  directory: test/fixtures/tf
+  root_module_directory: test/fixtures/tf
 
 provisioner:
   name: terraform
