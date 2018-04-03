@@ -19,8 +19,9 @@ try {
     }
 
     stage('Integration tests') {
-      sh 'scl enable rh-ruby24 bash'
-      sh 'ruby --version'
+      sh 'scl enable rh-ruby24 "gem environment && pwd && ls -l"'
+      sh 'scl eblnae rh-ruby24 "gem install bundler && PATH=$PATH:/home/jenkinsssh/bin/ bundle install --path vendor/bundle"'
+      sh 'scl enable rh-ruby24 "gem environment"'
     }
 
   }
