@@ -19,9 +19,10 @@ try {
     }
 
     stage('Integration tests') {
-      sh 'scl enable rh-ruby24 "gem environment && pwd && ls -l"'
-      sh 'scl enable rh-ruby24 "gem install bundler && PATH=$PATH:/home/jenkinsssh/bin/ bundle install --path vendor/bundle"'
-      sh 'scl enable rh-ruby24 "gem environment"'
+      withSubscription('sandbox') {
+        sh 'sudo yum install -y rh-ruby24-ruby-devel'
+        sh 'scl enable rh-ruby24 "gem install bundler && export PATH=$PATH:/home/jenkinsssh/bin/; bundle install --path vendor/bundle; cd tests/int; bundle exec kitchen test"'
+      }
     }
 
   }
