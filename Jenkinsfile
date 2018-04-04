@@ -10,7 +10,7 @@ try {
       checkout scm
     }
 
-    stage('Moodule Testing') {
+    stage('Module Testing') {
        infraModuleTesting()
     }
 
