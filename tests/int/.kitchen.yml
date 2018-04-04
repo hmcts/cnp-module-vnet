@@ -11,10 +11,6 @@ platforms:
 
 verifier:
   name: terraform
-  groups:
-  - name: default-test
-    controls:
-    - azure-resource-groups
   hostnames: contrived
 
 suites:
