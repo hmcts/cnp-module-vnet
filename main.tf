@@ -9,6 +9,10 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = ["${var.address_space}"]
   location            = "${azurerm_resource_group.rg.location}"
   dns_servers         = ["${var.lb_private_ip_address}", "${var.microsoft_external_dns}"]
+
+  lifecycle {
+    ignore_changes = ["address_space", "dns_servers"]
+  }
 }
 
 resource "azurerm_subnet" "sb" {
@@ -17,4 +21,8 @@ resource "azurerm_subnet" "sb" {
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
+
+  lifecycle {
+    ignore_changes = "address_prefix"
+  }
 }
