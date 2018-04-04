@@ -1,7 +1,7 @@
 ---
 driver:
   name: terraform
-  directory: test/fixtures/tf
+  root_module_directory: test/fixtures/tf
 
 provisioner:
   name: terraform
@@ -11,10 +11,6 @@ platforms:
 
 verifier:
   name: terraform
-  groups:
-  - name: default-test
-    controls:
-    - azure-resource-groups
   hostnames: contrived
 
 suites:

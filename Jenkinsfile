@@ -10,13 +10,10 @@ try {
       checkout scm
     }
 
-    stage('Terraform init') {
-      sh 'terraform init'
+    stage('Module Testing') {
+       infraModuleTesting()
     }
 
-    stage('Terraform Linting Checks') {
-      sh 'terraform validate -check-variables=false -no-color'
-    }
   }
 }
 catch (err) {
