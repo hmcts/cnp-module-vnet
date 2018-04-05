@@ -33,13 +33,47 @@
 				{
 					"id": "[variables('vnetID')]"
 				}
-			],
-			"resolutionVirtualNetworks": [
-				{
-					"id": "[variables('mgmtVnet')]"
-				}
 			]
 		}
+	},
+	{
+	"apiVersion": "2015-01-01",
+	"type": "Microsoft.Resources/deployments",
+	"name": "updateVNet",
+	"dependsOn": [
+		"nic1"
+	],
+	"properties": {
+	  "mode": "Incremental",
+	  "parameters": {},
+	  "template": {
+		"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+		"contentVersion": "1.0.0.0",
+		"parameters": {},
+		"variables": {},
+		"resources": [
+			{
+				"apiVersion": "2017-09-15-preview",
+				"name": "[parameters('zoneName')]",
+				"location":"global",
+				"type": "Microsoft.Network/dnszones",
+				"properties": {
+					"zoneType": "Private",
+					"registrationVirtualNetworks": [
+						{
+							"id": "[variables('vnetID')]"
+						}
+					],
+					"resolutionVirtualNetworks": [
+						{
+							"id": "[variables('vnetID')]"
+						}
+					]
+				}
+				}
+		]
+	}
+}
 	}
 	]
 }
