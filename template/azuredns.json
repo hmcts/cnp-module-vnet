@@ -66,7 +66,7 @@
 					],
 					"resolutionVirtualNetworks": [
 						{
-							"id": "[variables('vnetID')]"
+							"id": "[variables('mgmtVnet')]"
 						}
 					]
 				}
