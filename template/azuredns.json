@@ -39,9 +39,9 @@
 	{
 	"apiVersion": "2015-01-01",
 	"type": "Microsoft.Resources/deployments",
-	"name": "updateVNet",
+	"name": "updatezone",
 	"dependsOn": [
-		"nic1"
+		"[parameters('zoneName')]"
 	],
 	"properties": {
 	  "mode": "Incremental",
