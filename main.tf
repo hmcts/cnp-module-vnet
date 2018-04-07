@@ -11,18 +11,19 @@ resource "azurerm_virtual_network" "vnet" {
   dns_servers         = ["${var.lb_private_ip_address}", "${var.microsoft_external_dns}"]
 
   lifecycle {
-    ignore_changes = ["address_space", "dns_servers"]
+    ignore_changes = ["address_space","dns_servers"]
   }
 }
 
 resource "azurerm_subnet" "sb" {
-  count                = "4"
+  count                = "16"
   name                 = "${var.name}-subnet-${count.index}-${var.env}"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
-  address_prefix       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
+  address_prefix       = "${cidrsubnet("${var.source_range}", 6, count.index)}"
 
   lifecycle {
     ignore_changes = "address_prefix"
   }
+
 }
