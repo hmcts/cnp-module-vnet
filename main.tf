@@ -16,11 +16,11 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "sb" {
-  count                = "${var.subnet_count}"
+  count                = "16"
   name                 = "${var.name}-subnet-${count.index}-${var.env}"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
-  address_prefix       = "${cidrsubnet("${var.source_range}", "${var.subnet_prefix_length}", count.index)}"
+  address_prefix       = "${cidrsubnet("${var.source_range}", 6, count.index)}"
 
   lifecycle {
     ignore_changes = "address_prefix"
