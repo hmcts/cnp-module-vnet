@@ -24,3 +24,8 @@ variable "microsoft_external_dns" {
   default     = ["168.63.129.16", "172.16.0.10"]
   description = "List of external DNS servers, default currently including tactical dns."
 }
+
+variable "service_endpoints" {
+  type    = "string"
+  default = "Microsoft.Sql"
+}
