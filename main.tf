@@ -29,7 +29,7 @@ resource "azurerm_template_deployment" "azuredns" {
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   parameters = {
-    zoneName     = "service.core-compute-${var.env}.internal"
+    zoneName     = "service.${var.env}.platform.hmcts.net"
     vnetName     = "${azurerm_virtual_network.vnet.name}"
     subscription = "${var.subscription}"
   }
