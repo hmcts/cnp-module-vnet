@@ -26,6 +26,6 @@ variable "microsoft_external_dns" {
 }
 
 variable "service_endpoints" {
-  type    = "string"
-  default = "Microsoft.Sql"
+  type    = "list"
+  default = ["Microsoft.Sql"]
 }
