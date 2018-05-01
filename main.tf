@@ -16,13 +16,14 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "sb" {
-  count                = "${var.subnet_count}"
-  name                 = "${var.name}-subnet-${count.index}-${var.env}"
-  resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
-  virtual_network_name = "${azurerm_virtual_network.vnet.name}"
-  address_prefix       = "${cidrsubnet("${var.source_range}", "${var.subnet_prefix_length}", count.index)}"
+  count                     = "${var.subnet_count}"
+  name                      = "${var.name}-subnet-${count.index}-${var.env}"
+  resource_group_name       = "${azurerm_virtual_network.vnet.resource_group_name}"
+  virtual_network_name      = "${azurerm_virtual_network.vnet.name}"
+  address_prefix            = "${cidrsubnet("${var.source_range}", "${var.subnet_prefix_length}", count.index)}"
+  network_security_group_id = "${var.network_security_group_id}"
 
-#  lifecycle {
-#    ignore_changes = "address_prefix"
-#  }
+  #  lifecycle {
+  #    ignore_changes = "address_prefix"
+  #  }
 }
