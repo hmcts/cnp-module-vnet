@@ -32,5 +32,3 @@ variable "subnet_prefix_length" {
 variable "subnet_count" {
   default = "4"
 }
-
-variable "network_security_group_id" {}
