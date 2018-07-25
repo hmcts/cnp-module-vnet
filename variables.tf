@@ -21,6 +21,6 @@ variable "source_range" {
 }
 
 variable "microsoft_external_dns" {
-  default     = ["168.63.129.16", "172.16.0.10"]
+  default     = ["168.63.129.16", "172.16.0.10", "172.16.0.14"]
   description = "List of external DNS servers, default currently including tactical dns."
 }
