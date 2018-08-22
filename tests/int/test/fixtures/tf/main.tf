@@ -22,7 +22,7 @@ variable "root_address_space" {
 }
 
 module "vnet" {
-  source       = "../../../../../"
+  source                = "../../../../../"
   name                  = "${var.name}"
   location              = "${var.location}"
   address_space         = "${cidrsubnet("${var.root_address_space}", 6, "${var.netnum}")}"
