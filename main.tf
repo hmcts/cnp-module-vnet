@@ -23,6 +23,6 @@ resource "azurerm_subnet" "sb" {
   address_prefix            = "${cidrsubnet("${var.source_range}", "${var.subnet_prefix_length}", count.index)}"
 
   lifecycle {
-    ignore_changes = "address_prefix"
+    ignore_changes = ["address_prefix","service_endpoints"]
   }
 }
