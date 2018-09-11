@@ -16,9 +16,6 @@ variable "env" {
 
 variable "lb_private_ip_address" {}
 
-variable "source_range" {
-  type = "string"
-}
 
 variable "microsoft_external_dns" {
   default     = ["168.63.129.16", "172.16.0.10", "172.16.0.14"]
