@@ -27,8 +27,6 @@ resource "azurerm_subnet" "sb" {
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
 
-  tags = "${var.common_tags}"
-
   lifecycle {
     ignore_changes = "address_prefix"
   }
