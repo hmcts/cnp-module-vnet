@@ -1,6 +1,9 @@
 resource "azurerm_resource_group" "rg" {
   name     = "${var.name}-${var.env}"
   location = "${var.location}"
+
+  tags = "${var.common_tags}"
+
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -9,6 +12,8 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = ["${var.address_space}"]
   location            = "${azurerm_resource_group.rg.location}"
   dns_servers         = ["${var.lb_private_ip_address}", "${var.microsoft_external_dns}"]
+
+  tags = "${var.common_tags}"
 
   lifecycle {
     ignore_changes = ["address_space", "dns_servers"]
