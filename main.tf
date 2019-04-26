@@ -33,7 +33,7 @@ resource "azurerm_subnet" "sb" {
 }
 # Add Palo Alto Subnets
 resource "azurerm_subnet" "palo_mgmt_sb" {
-  name                 = "palo-mgmt-subnet-${count.index}-${var.env}"
+  name                 = "palo-mgmt"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 6, 21)}"
@@ -41,7 +41,7 @@ resource "azurerm_subnet" "palo_mgmt_sb" {
 }
 
 resource "azurerm_subnet" "palo_trusted_sb" {
-  name                 = "palo-trusted-subnet-${count.index}-${var.env}"
+  name                 = "palo-trusted"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}" 
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 6, 23)}"
@@ -49,7 +49,7 @@ resource "azurerm_subnet" "palo_trusted_sb" {
 }
 
 resource "azurerm_subnet" "palo_untrusted_sb" {
-  name                 = "palo-untrusted-subnet-${count.index}-${var.env}"
+  name                 = "palo-untrusted"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 6, 22)}"
