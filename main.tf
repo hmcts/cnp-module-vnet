@@ -31,3 +31,27 @@ resource "azurerm_subnet" "sb" {
     ignore_changes = "address_prefix"
   }
 }
+# Add Palo Alto Subnets
+resource "azurerm_subnet" "palo_mgmt_sb" {
+  name                 = "palo-mgmt"
+  resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
+  virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+  address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 6, 21)}"
+  service_endpoints    = ["Microsoft.KeyVault", "Microsoft.Storage"]
+}
+
+resource "azurerm_subnet" "palo_trusted_sb" {
+  name                 = "palo-trusted"
+  resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}" 
+  virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+  address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 6, 23)}"
+  service_endpoints    = ["Microsoft.KeyVault", "Microsoft.Storage"]
+}
+
+resource "azurerm_subnet" "palo_untrusted_sb" {
+  name                 = "palo-untrusted"
+  resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
+  virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+  address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 6, 22)}"
+  service_endpoints    = ["Microsoft.KeyVault", "Microsoft.Storage"]
+}
