@@ -55,3 +55,11 @@ resource "azurerm_subnet" "palo_untrusted_sb" {
   address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 6, 22)}"
   service_endpoints    = ["Microsoft.KeyVault", "Microsoft.Storage"]
 }
+
+resource "azurerm_subnet" "elasticsearch_sb" {
+  name                 = "elasticsearch"
+  resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
+  virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+  address_prefix       = "${cidrsubnet(element(azurerm_virtual_network.vnet.address_space,0), 4, 6)}"
+  service_endpoints    = ["Microsoft.KeyVault", "Microsoft.Storage"]
+}
