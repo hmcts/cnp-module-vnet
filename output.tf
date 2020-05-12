@@ -7,15 +7,15 @@ output "vnetname" {
 }
 
 output "subnet_ids" {
-  value = [azurerm_subnet.sb.*.id]
+  value = azurerm_subnet.sb.*.id
 }
 
 output "subnet_names" {
-  value = [azurerm_subnet.sb.*.name]
+  value = azurerm_subnet.sb.*.name
 }
 
 output "subnetaddress_prefixes" {
-  value = [azurerm_subnet.sb.*.address_prefix]
+  value = azurerm_subnet.sb.*.address_prefix
 }
 
 output "resourcegroup_id" {
