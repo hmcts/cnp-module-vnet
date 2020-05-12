@@ -7,17 +7,19 @@ variable "location" {
   default = "South UK"
 }
 
-variable "address_space" {}
+variable "address_space" {
+}
 
 variable "env" {
-  type    = "string"
+  type    = string
   default = "local"
 }
 
-variable "lb_private_ip_address" {}
+variable "lb_private_ip_address" {
+}
 
 variable "source_range" {
-  type = "string"
+  type = string
 }
 
 variable "microsoft_external_dns" {
@@ -32,3 +34,4 @@ variable "subnet_prefix_length" {
 variable "subnet_count" {
   default = "4"
 }
+
