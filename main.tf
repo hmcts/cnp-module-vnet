@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "vnet" {
   tags = "${var.common_tags}"
 
   lifecycle {
-    ignore_changes = ["address_space", "dns_servers"]
+    ignore_changes = [address_space, dns_servers]
   }
 }
 
@@ -28,6 +28,6 @@ resource "azurerm_subnet" "sb" {
   address_prefixes       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
 
   lifecycle {
-    prevent_destroy = ["address_prefixes"]
+    ignore_changes = [address_prefixes]
   }
 }
