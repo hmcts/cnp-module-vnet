@@ -28,6 +28,6 @@ resource "azurerm_subnet" "sb" {
   address_prefixes       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
 
   lifecycle {
-    prevent_destroy = [ address_prefixes ]
+    prevent_destroy = ["address_prefixes"]
   }
 }
