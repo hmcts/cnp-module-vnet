@@ -27,6 +27,8 @@ resource "azurerm_subnet" "sb" {
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
   address_prefixes     = ["${cidrsubnet("${var.source_range}", 4, count.index)}"]
 
+  service_endpoints = "${count.index == 3 ? ["Microsoft.Sql","Microsoft.Storage"] : [] }"
+
   lifecycle {
     ignore_changes = [address_prefixes]
   }
