@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "vnet" {
   tags = "${var.common_tags}"
 
   lifecycle {
-    ignore_changes = "address_space", "dns_servers"
+    ignore_changes = ["address_space", "dns_servers"]
   }
 }
 
@@ -25,11 +25,11 @@ resource "azurerm_subnet" "sb" {
   name                 = "${var.name}-subnet-${count.index}-${var.env}"
   resource_group_name  = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name = "${azurerm_virtual_network.vnet.name}"
-  address_prefixes     = ["${cidrsubnet("${var.source_range}", 4, count.index)}"]
+  address_prefix       = "${cidrsubnet("${var.source_range}", 4, count.index)}"
 
   service_endpoints = "${count.index == 3 ? ["Microsoft.Sql","Microsoft.Storage"] : [] }"
 
   lifecycle {
-    ignore_changes = "address_prefixes"
+    ignore_changes = "address_prefix"
   }
 }
