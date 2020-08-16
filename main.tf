@@ -30,6 +30,6 @@ resource "azurerm_subnet" "sb" {
   service_endpoints = "${count.index == 3 ? ["Microsoft.Sql","Microsoft.Storage"] : [] }"
 
   lifecycle {
-    ignore_changes = "address_prefix"
+    ignore_changes = ["address_prefix"]
   }
 }
