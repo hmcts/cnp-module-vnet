@@ -16,7 +16,7 @@ resource "azurerm_virtual_network" "vnet" {
   tags = "${var.common_tags}"
 
   lifecycle {
-    ignore_changes = ["address_space", "dns_servers"]
+    ignore_changes = [address_space, dns_servers]
   }
 }
 
@@ -30,6 +30,6 @@ resource "azurerm_subnet" "sb" {
   service_endpoints = "${count.index == 3 ? ["Microsoft.Sql","Microsoft.Storage"] : [] }"
 
   lifecycle {
-    ignore_changes = ["address_prefix"]
+    ignore_changes = [address_prefix]
   }
 }
