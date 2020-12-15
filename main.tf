@@ -26,6 +26,7 @@ resource "azurerm_subnet" "sb" {
   resource_group_name                            = "${azurerm_virtual_network.vnet.resource_group_name}"
   virtual_network_name                           = "${azurerm_virtual_network.vnet.name}"
   address_prefix                                 = "${cidrsubnet("${var.source_range}", 4, count.index)}"
+  service_endpoints                              = count.index == 3 ? ["Microsoft.Sql", "Microsoft.Storage"] : []
   enforce_private_link_endpoint_network_policies = var.iaas_subnet_enforce_private_link_endpoint_network_policies
 
   lifecycle {
