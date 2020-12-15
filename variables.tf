@@ -31,3 +31,7 @@ variable "common_tags" {
     "Team Name" = "pleaseTagMe"
   }
 }
+
+variable "iaas_subnet_enforce_private_link_endpoint_network_policies" {
+  default = true
+}
