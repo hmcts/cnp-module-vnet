@@ -10,14 +10,14 @@ variable "location" {
 variable "address_space" {}
 
 variable "env" {
-  type    = "string"
+  type    = string
   default = "local"
 }
 
 variable "lb_private_ip_address" {}
 
 variable "source_range" {
-  type = "string"
+  type = string
 }
 
 variable "microsoft_external_dns" {
@@ -26,7 +26,7 @@ variable "microsoft_external_dns" {
 }
 
 variable "common_tags" {
-  type = "map"
+  type = map(string)
   default = {
     "Team Name" = "pleaseTagMe"
   }
@@ -34,4 +34,9 @@ variable "common_tags" {
 
 variable "iaas_subnet_enforce_private_link_endpoint_network_policies" {
   default = true
+}
+
+variable "postgresql_subnet_cidr_blocks" {
+  type    = set(string)
+  default = []
 }
