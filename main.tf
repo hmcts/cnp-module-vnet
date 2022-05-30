@@ -35,9 +35,9 @@ resource "azurerm_subnet" "sb" {
 }
 
 resource "azurerm_subnet" "postgresql_subnet" {
-  for_each = var.postgresql_subnet_cidr_blocks
+  count = length(var.postgresql_subnet_cidr_blocks) != 0 ? 1 : 0
 
-  address_prefixes     = [each.value]
+  address_prefixes     = var.postgresql_subnet_cidr_blocks
   name                 = "postgresql"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
