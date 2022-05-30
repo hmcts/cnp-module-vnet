@@ -25,11 +25,29 @@ resource "azurerm_subnet" "sb" {
   name                                           = "${var.name}-subnet-${count.index}-${var.env}"
   resource_group_name                            = azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vnet.name
-  address_prefix                                 = "${cidrsubnet("${var.source_range}", 4, count.index)}"
+  address_prefix                                 = cidrsubnet("${var.source_range}", 4, count.index)
   service_endpoints                              = count.index == 3 ? ["Microsoft.Sql", "Microsoft.Storage"] : []
   enforce_private_link_endpoint_network_policies = var.iaas_subnet_enforce_private_link_endpoint_network_policies
 
   lifecycle {
     ignore_changes = [address_prefix]
+  }
+}
+
+resource "azurerm_subnet" "postgresql_subnet" {
+  for_each = var.postgresql_subnet_cidr_blocks
+
+  address_prefixes     = [var.postgresql_subnet_cidr]
+  name                 = "postgresql"
+  resource_group_name  = azurerm_resource_group.rg.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  delegation {
+    name = "fs"
+    service_delegation {
+      name = "Microsoft.DBforPostgreSQL/flexibleServers"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action",
+      ]
+    }
   }
 }

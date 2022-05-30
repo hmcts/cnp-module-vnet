@@ -35,3 +35,8 @@ variable "common_tags" {
 variable "iaas_subnet_enforce_private_link_endpoint_network_policies" {
   default = true
 }
+
+variable "postgresql_subnet_cidr_blocks" {
+  type    = set(string)
+  default = []
+}
