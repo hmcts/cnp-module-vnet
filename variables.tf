@@ -14,7 +14,9 @@ variable "env" {
   default = "local"
 }
 
-variable "lb_private_ip_address" {}
+variable "lb_private_ip_address" {
+  type = string
+}
 
 variable "source_range" {
   type = string
