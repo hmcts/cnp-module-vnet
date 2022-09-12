@@ -26,6 +26,9 @@ output "resourcegroup_name" {
   value = "${azurerm_resource_group.rg.name}"
 }
 
+output "postgresql_subnet_id" {
+   value = values(azurerm_subnet.postgresql_subnet)[*].id
+}  
 /*output "subnet_gateway_name" {
   value = "${azurerm_subnet.sb.0.name}"
 }
