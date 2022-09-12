@@ -33,10 +33,28 @@ resource "azurerm_subnet" "sb" {
   }
 }
 
-resource "azurerm_subnet" "postgresql_subnet" {
-  for_each = var.postgresql_subnet_cidr_blocks
+//resource "azurerm_subnet" "postgresql_subnet" {
+//  for_each = var.postgresql_subnet_cidr_blocks
+//
+//  address_prefixes     = [var.postgresql_subnet_cidr]
+//  name                 = "postgresql"
+//  resource_group_name  = azurerm_resource_group.rg.name
+//  virtual_network_name = azurerm_virtual_network.vnet.name
+//  delegation {
+//    name = "fs"
+//    service_delegation {
+//      name = "Microsoft.DBforPostgreSQL/flexibleServers"
+//      actions = [
+//        "Microsoft.Network/virtualNetworks/subnets/join/action",
+//      ]
+//    }
+//  }
+//}
 
-  address_prefixes     = [var.postgresql_subnet_cidr]
+resource "azurerm_subnet" "postgresql_subnet" {
+  count = length(var.postgresql_subnet_cidr_blocks) != 0 ? 1 : 0
+
+  address_prefixes     = var.postgresql_subnet_cidr_blocks
   name                 = "postgresql"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name

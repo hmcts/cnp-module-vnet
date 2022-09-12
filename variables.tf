@@ -41,4 +41,4 @@ variable "postgresql_subnet_cidr_blocks" {
   default = []
 }
 
-variable "postgresql_subnet_cidr" {}
+#variable "postgresql_subnet_cidr" {}
