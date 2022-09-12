@@ -15,7 +15,7 @@ output "subnet_names" {
 }
 
 output "subnetaddress_prefixes" {
-  value = ["${azurerm_subnet.sb.*.address_prefix}"]
+  value = ["${azurerm_subnet.sb.*.address_prefixes}"]
 }
 
 output "resourcegroup_id" {
