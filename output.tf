@@ -7,7 +7,7 @@ output "vnetname" {
 }
 
 output "subnet_ids" {
-  value = ["${azurerm_subnet.sb.*.id}"]
+  value = "${azurerm_subnet.sb.*.id}"
 }
 
 output "subnet_names" {
