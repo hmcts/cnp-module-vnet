@@ -1,6 +1,7 @@
 resource "azurerm_resource_group" "rg" {
   name     = "${var.name}-${var.env}"
   location = var.location
+  tags     = var.common_tags
 }
 
 resource "azurerm_virtual_network" "vnet" {
@@ -8,6 +9,8 @@ resource "azurerm_virtual_network" "vnet" {
   resource_group_name = azurerm_resource_group.rg.name
   address_space       = [var.address_space]
   location            = azurerm_resource_group.rg.location
+
+  tags = var.common_tags
 
   lifecycle {
     ignore_changes = [
@@ -22,6 +25,7 @@ resource "azurerm_subnet" "sb" {
   resource_group_name  = azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefix       = cidrsubnet(var.source_range, var.subnet_prefix_length, count.index)
+  #enforce_private_link_endpoint_network_policies = var.iaas_subnet_enforce_private_link_endpoint_network_policies
 
   lifecycle {
     ignore_changes = [
