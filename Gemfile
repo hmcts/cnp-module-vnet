@@ -1,4 +1,4 @@
-ruby '2.4.5'
+ruby '3.1.2'
 
 source 'https://rubygems.org/' do
   gem 'test-kitchen'
