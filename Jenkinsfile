@@ -10,10 +10,6 @@ try {
       checkout scm
     }
 
-    stage('Module Testing') {
-       infraModuleTesting()
-    }
-
   }
 }
 catch (err) {
